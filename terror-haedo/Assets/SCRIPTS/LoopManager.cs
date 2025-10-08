@@ -1,67 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class LoopManager : MonoBehaviour
 {
-    [Header("Loop Control")]
-    public int currentLoop = 1;
-    public int maxLoops = 5;
+    [Header("Configuración general")]
+    public GameObject player;              // tu prefab de Player del asset store
+    public GameObject[] loops;             // tus escenarios o prefabs de cada loop (loop1, loop2, etc.)
+    public int currentLoop = 1;            // loop actual (comienza en 1)
+    public int maxLoops = 5;               // máximo de loops (en tu caso, 5)
 
-    [Header("Player Settings")]
-    public GameObject player;
-    public Transform entryPoint; // posición de regreso al loop 1
+    private Vector3 entryPoint;            // posición inicial del jugador
 
-    [Header("Subsystem References")]
-    public CeilingTrap ceilingTrap;
-    public MemoryFlash memoryFlash;
-    public RLGLManager rlglManager;
-    public DarkRoomManager darkRoom;
-    public GameObject finalExit;
+    void Start()
+    {
+        // Guarda la posición inicial del jugador al iniciar el juego
+        if (player != null)
+            entryPoint = player.transform.position;
 
+        // Asegura que solo el loop 1 esté activo al inicio
+        for (int i = 0; i < loops.Length; i++)
+        {
+            loops[i].SetActive(i == 0);
+        }
+    }
+
+    // Cuando el jugador completa un loop correctamente
     public void AdvanceLoop()
     {
-        currentLoop++;
-        if (currentLoop > maxLoops)
+        if (currentLoop < maxLoops)
         {
-            WinGame();
-            return;
+            loops[currentLoop - 1].SetActive(false);  // desactiva el loop anterior
+            loops[currentLoop].SetActive(true);       // activa el siguiente loop
+            currentLoop++;
+
+            Debug.Log("Avanzaste al loop " + currentLoop);
+        }
+        else
+        {
+            Debug.Log("¡Ganaste el juego! Llegaste al loop final.");
+            // Podés agregar una animación de salida, pantalla de victoria, etc.
+        }
+    }
+
+    // Cuando el jugador falla un desafío o toca un hazard
+    public void ResetToFirstLoop()
+    {
+        Debug.Log("Fallaste. Volviendo al loop 1...");
+
+        // Desactiva todos los loops excepto el primero
+        for (int i = 0; i < loops.Length; i++)
+        {
+            loops[i].SetActive(i == 0);
         }
 
-        Debug.Log("✅ Pasaste al loop " + currentLoop);
-        TeleportPlayerTo(entryPoint.position);
-    }
-
-    public void FailCurrentLoop()
-    {
-        Debug.Log("❌ Fallaste en el loop " + currentLoop);
-        ResetAllSystems();
         currentLoop = 1;
-        TeleportPlayerTo(entryPoint.position);
+
+        // Teletransporta al jugador a la posición inicial
+        TeleportPlayerTo(entryPoint);
     }
 
-    public void TeleportPlayerTo(Vector3 pos)
+    // Teletransporta al jugador sin romper su control de cámara
+    public void TeleportPlayerTo(Vector3 position)
     {
-        // Reinicia velocidad/velocidad residual
-        var rb = player.GetComponent<Rigidbody>();
-        if (rb != null) rb.velocity = Vector3.zero;
+        if (player == null) return;
 
-        player.transform.position = pos;
-    }
+        // Si tiene Rigidbody, detenemos su movimiento
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
 
-    void WinGame()
-    {
-        Debug.Log("🎉 ¡Ganaste el juego!");
-        if (finalExit != null) finalExit.SetActive(true);
-        // Aquí podrías activar UI de victoria o cargar otra escena
-    }
-
-    public void ResetAllSystems()
-    {
-        ceilingTrap?.ResetTrap();
-        memoryFlash?.ResetMiniGame();
-        rlglManager?.ResetManager();
-        darkRoom?.ResetRoom();
-        // Reset visuales globales si los tenés
+        player.transform.position = position;
     }
 }

@@ -5,56 +5,55 @@ using UnityEngine;
 public class DarkRoomManager : MonoBehaviour
 {
     public LoopManager loopManager;
-    public Light[] lights;
+    public Light mainLight;
     public GameObject[] hazardBlocks;
-    public Transform goal;
-    public Transform player;
 
-    private bool gameActive = false;
+    private bool inDarkSequence = false;
 
-    public void StartDarkRoom()
+    void OnTriggerEnter(Collider other)
     {
-        if (!gameActive)
+        if (other.gameObject == loopManager.player && !inDarkSequence)
+        {
             StartCoroutine(DarkSequence());
+        }
     }
 
-    private IEnumerator DarkSequence()
+    System.Collections.IEnumerator DarkSequence()
     {
-        gameActive = true;
+        inDarkSequence = true;
+        Debug.Log("Luces fuera...");
 
         // Fade out
-        foreach (var l in lights) l.intensity = 0f;
-        yield return new WaitForSeconds(1.5f);
-
-        // Aparecen bloques
-        foreach (var b in hazardBlocks) b.SetActive(true);
-
-        // Flash de luz repentino
-        foreach (var l in lights) l.intensity = 1f;
-        Debug.Log("⚠ Evita los bloques");
-
-        // Esperar hasta llegar a meta o tocar un bloque
-        while (Vector3.Distance(player.position, goal.position) > 1f)
+        for (float i = 1; i >= 0; i -= Time.deltaTime)
         {
+            mainLight.intensity = i;
             yield return null;
         }
 
-        // Si llega a meta
-        loopManager.AdvanceLoop();
-        gameActive = false;
+        // Luces fuera
+        yield return new WaitForSeconds(1f);
+
+        // Luces on + hazards activos
+        foreach (var h in hazardBlocks)
+            h.SetActive(true);
+
+        for (float i = 0; i <= 1; i += Time.deltaTime)
+        {
+            mainLight.intensity = i;
+            yield return null;
+        }
+
+        Debug.Log("Evita los bloques peligrosos...");
     }
 
     public void PlayerHitHazard()
     {
-        loopManager.FailCurrentLoop();
-        gameActive = false;
+        Debug.Log("Tocaste un bloque peligroso!");
+        loopManager.ResetToFirstLoop();
     }
 
-    public void ResetRoom()
+    public void PlayerReachedExit()
     {
-        StopAllCoroutines();
-        gameActive = false;
-        foreach (var b in hazardBlocks) b.SetActive(false);
-        foreach (var l in lights) l.intensity = 1f;
+        loopManager.AdvanceLoop();
     }
 }

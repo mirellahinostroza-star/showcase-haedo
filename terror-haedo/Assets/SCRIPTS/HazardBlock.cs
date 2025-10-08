@@ -6,9 +6,11 @@ public class HazardBlock : MonoBehaviour
 {
     public DarkRoomManager darkRoomManager;
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject == darkRoomManager.loopManager.player)
+        {
             darkRoomManager.PlayerHitHazard();
+        }
     }
 }
