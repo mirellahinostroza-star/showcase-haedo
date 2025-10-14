@@ -2,65 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Loop1CeilingTrap : MonoBehaviour
 {
-    public LoopManager loopManager;   // asignar en inspector
+    public LoopManager loopManager;  
     public Transform ceiling;
     public Transform ceilingStart;
     public Transform ceilingEnd;
-    public float baseSpeed = 2f;
+  
+    public float baseSpeed = 0.2f;       
+    public float speedMultiplier = 0.8f;  
+    public float delayBeforeDrop = 1.5f;
 
     private bool triggered = false;
+    private bool isMoving = false;
+    private bool playerHit = false;
 
     void Start()
     {
+        // Asegura que el techo arranque arriba
         if (ceilingStart != null && ceiling != null)
             ceiling.position = ceilingStart.position;
     }
 
     void Update()
     {
-        if (!triggered) return;
+        if (!isMoving) return;
 
         GameObject player = loopManager.player;
         if (player == null) return;
 
         Rigidbody rb = player.GetComponent<Rigidbody>();
         float playerSpeed = rb != null ? rb.velocity.magnitude : 0f;
-        float speed = baseSpeed + playerSpeed * 1.5f;
 
-        ceiling.position = Vector3.MoveTowards(ceiling.position, ceilingEnd.position, speed * Time.deltaTime);
+        float moveSpeed = baseSpeed + playerSpeed * speedMultiplier;
 
-        // Si el techo llegó al final -> fallo
-        if (Vector3.Distance(ceiling.position, ceilingEnd.position) < 0.05f)
-        {
-            triggered = false;
-            loopManager.ResetToFirstLoop();
-        }
+        ceiling.position = Vector3.MoveTowards(
+            ceiling.position,
+            ceilingEnd.position,
+            moveSpeed * Time.deltaTime
+        );
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        // Si aún no se activó, inicia el movimiento del techo
+        if (!triggered)
         {
-            Debug.Log("[Loop1] Start trigger activated by Player");
             triggered = true;
+            StartCoroutine(StartCeilingAfterDelay());
+        }
+        // Si el techo ya está bajando y toca al jugador
+        else if (isMoving)
+        {
+            playerHit = true;
+            Debug.Log("[Loop1] El techo tocó al jugador. Reiniciando loop...");
+            StopTrapAndReset();
+            loopManager.ResetToFirstLoop();
         }
     }
 
-    // Llamar esta función si el jugador alcanza la zona final segura
-    public void StopTrapAndAdvance()
+    IEnumerator StartCeilingAfterDelay()
     {
-        triggered = false;
-        if (ceilingStart != null)
-            ceiling.position = ceilingStart.position;
-        loopManager.AdvanceLoop();
+        Debug.Log("[Loop1] Trigger activado, esperando antes de bajar...");
+        yield return new WaitForSeconds(delayBeforeDrop);
+        isMoving = true;
+        Debug.Log("[Loop1] El techo comienza a bajar");
     }
 
-    public void ResetTrap()
+    public void StopTrapAndReset()
     {
+        StopAllCoroutines();
         triggered = false;
-        if (ceilingStart != null)
+        isMoving = false;
+        playerHit = false;
+
+        if (ceilingStart != null && ceiling != null)
             ceiling.position = ceilingStart.position;
+
+        Debug.Log("[Loop1] Techo reseteado a posición inicial.");
     }
+    public void StopTrap()
+{
+    StopTrapAndReset();
+}
 }
