@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Loop1CeilingTrap : MonoBehaviour
 {
-    public LoopManager loopManager;  
+    public LoopManager loopManager;
     public Transform ceiling;
     public Transform ceilingStart;
     public Transform ceilingEnd;
-  
-    public float baseSpeed = 0.2f;       
-    public float speedMultiplier = 0.8f;  
+
+    [Header("Velocidades")]
+    public float baseSpeed = 0.2f;         // velocidad base del techo
+    public float speedMultiplier = 1.5f;   // cuanto más rápido baja cuando el jugador corre
+    public float maxSpeed = 3f;            // límite de velocidad para evitar que sea ridículo
+
+    [Header("Delay")]
     public float delayBeforeDrop = 1.5f;
 
     private bool triggered = false;
@@ -26,42 +29,56 @@ public class Loop1CeilingTrap : MonoBehaviour
     }
 
     void Update()
+{
+    if (!isMoving) return;
+
+    float moveSpeed = baseSpeed;
+
+    // Si el jugador presiona Shift, aumenta velocidad y muestra debug
+    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
     {
-        if (!isMoving) return;
-
-        GameObject player = loopManager.player;
-        if (player == null) return;
-
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-        float playerSpeed = rb != null ? rb.velocity.magnitude : 0f;
-
-        float moveSpeed = baseSpeed + playerSpeed * speedMultiplier;
-
-        ceiling.position = Vector3.MoveTowards(
-            ceiling.position,
-            ceilingEnd.position,
-            moveSpeed * Time.deltaTime
-        );
+        moveSpeed *= 4f;
+        Debug.Log("Jugador corriendo, techo bajando rápido");
     }
+
+    // Baja el techo indefinidamente
+    ceiling.position += Vector3.down * moveSpeed * Time.deltaTime;
+
+    // Detectar colisión con el jugador manualmente
+    if (!playerHit && loopManager.player != null)
+    {
+        Collider playerCollider = loopManager.player.GetComponent<Collider>();
+        Collider ceilingCollider = ceiling.GetComponent<Collider>();
+
+        if (playerCollider != null && ceilingCollider != null)
+        {
+            if (ceilingCollider.bounds.Intersects(playerCollider.bounds))
+            {
+                playerHit = true;
+                Debug.Log("[Loop1] El techo tocó al jugador. Reiniciando loop...");
+                StopTrapAndReset();
+                loopManager.ResetToFirstLoop();
+            }
+        }
+    }
+}
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
-        // Si aún no se activó, inicia el movimiento del techo
         if (!triggered)
         {
             triggered = true;
             StartCoroutine(StartCeilingAfterDelay());
         }
-        // Si el techo ya está bajando y toca al jugador
         else if (isMoving)
-        {
-            playerHit = true;
-            Debug.Log("[Loop1] El techo tocó al jugador. Reiniciando loop...");
-            StopTrapAndReset();
-            loopManager.ResetToFirstLoop();
-        }
+{
+    playerHit = true;
+    Debug.Log("[Loop1] El techo tocó al jugador. Reiniciando loop...");
+    StopTrapAndReset();
+    loopManager.ResetToFirstLoop();
+}
     }
 
     IEnumerator StartCeilingAfterDelay()
@@ -84,8 +101,9 @@ public class Loop1CeilingTrap : MonoBehaviour
 
         Debug.Log("[Loop1] Techo reseteado a posición inicial.");
     }
+
     public void StopTrap()
-{
-    StopTrapAndReset();
-}
+    {
+        StopTrapAndReset();
+    }
 }

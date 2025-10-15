@@ -12,12 +12,19 @@ public class Loop1_EndZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("[Loop1] Jugador llegó al final, pasando al Loop 2...");
-            
+
             if (ceilingTrap != null)
-                ceilingTrap.StopTrap(); // Detiene el techo, opcional
-            
+                ceilingTrap.StopTrap(); // Detiene el techo
+
+            // Desactiva todo el Loop 1
+            if (loopManager.loops.Length > 0 && loopManager.loops[0] != null)
+                loopManager.loops[0].SetActive(false);
+
+            // Avanza al siguiente loop
             loopManager.AdvanceLoop();
-            loopManager.RespawnPlayer(); // vuelve al punto inicial
+
+            // Respawnea al jugador en el nuevo loop
+            loopManager.RespawnPlayer();
         }
     }
 }
