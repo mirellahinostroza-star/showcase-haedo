@@ -28,7 +28,7 @@ public class LoopManager : MonoBehaviour
         ActivateLoop(currentLoop);
     }
 
-    // 🔁 Resetear al primer loop
+        // 🔁 Resetear al primer loop
     public void ResetToFirstLoop()
     {
         Debug.Log("🔄 Reset to first loop");
@@ -36,6 +36,7 @@ public class LoopManager : MonoBehaviour
         RespawnPlayer();
         ActivateLoop(currentLoop);
     }
+
 
     // ⏩ Avanzar al siguiente loop
     public void AdvanceLoop()
@@ -90,4 +91,9 @@ public class LoopManager : MonoBehaviour
 
         Debug.Log("Loop activo: " + index);
     }
+    public void ResetCurrentLoop()
+{
+    Debug.Log($"🔁 Reiniciando loop actual: {currentLoop}");
+    RespawnPlayer();
+}
 }
