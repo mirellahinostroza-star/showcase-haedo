@@ -11,9 +11,9 @@ public class Loop4TriggerStart : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("[Loop4] Jugador entró al trigger de inicio → iniciando blackout");
+            Debug.Log("[Loop4] Jugador activó el trigger → iniciando blackout");
             loop4Manager.StartBlackout();
-            gameObject.SetActive(false); // evita que se repita el evento
+            gameObject.SetActive(false);
         }
     }
 }

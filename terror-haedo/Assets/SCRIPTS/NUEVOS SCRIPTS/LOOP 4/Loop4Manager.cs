@@ -5,12 +5,21 @@ using UnityEngine;
 public class Loop4Manager : MonoBehaviour
 {
     [Header("Referencias")]
-    public LoopManager loopManager;      // referencia global
-    public Light[] lightsToControl;      // luces del pasillo
-    public GameObject[] hazardBlocks;    // cubos peligrosos
-    public float blackoutDuration = 2f;  // tiempo de oscuridad
+    public LoopManager loopManager;
+    public Light[] lightsToControl;
+    public GameObject[] hazardBlocks;
+    public Transform loop4SpawnPoint;
+    public GameObject startTrigger; // 👈 referencia al Loop4_StartTrigger
+
+    [Header("Tiempos")]
+    public float blackoutDuration = 2f;
 
     private bool blackoutRunning = false;
+
+    void Start()
+    {
+        ResetEnvironment();
+    }
 
     public void StartBlackout()
     {
@@ -21,43 +30,60 @@ public class Loop4Manager : MonoBehaviour
     IEnumerator BlackoutRoutine()
     {
         blackoutRunning = true;
-        Debug.Log("[Loop4] Blackout iniciado");
+        Debug.Log("[Loop4] Iniciando blackout...");
 
-        // Apagar todas las luces
+        // Apagar luces
         foreach (var l in lightsToControl)
             if (l != null) l.enabled = false;
 
-        // Asegurarse de que los cubos estén invisibles
-        foreach (var b in hazardBlocks)
-            SetBlockVisible(b, false);
-
         yield return new WaitForSeconds(blackoutDuration);
 
-        // Encender las luces
+        // Encender luces
         foreach (var l in lightsToControl)
             if (l != null) l.enabled = true;
 
-        // Hacer visibles los cubos peligrosos
+        // Mostrar cubos
         foreach (var b in hazardBlocks)
             SetBlockVisible(b, true);
 
-        Debug.Log("[Loop4] Luces encendidas → cubos ahora visibles");
+        Debug.Log("[Loop4] Blackout terminado → luces encendidas y cubos visibles");
         blackoutRunning = false;
     }
 
     public void ResetLoop4()
     {
-        Debug.Log("[Loop4] Reiniciando Loop 4...");
+        Debug.Log("[Loop4] Jugador falló. Reiniciando Loop 4...");
 
-        // Volver invisibles los cubos
+        // 🔹 Ocultamos los cubos
         foreach (var b in hazardBlocks)
             SetBlockVisible(b, false);
 
-        // Respawn del jugador al inicio del Loop 4
+        // 🔹 Reactivamos el trigger de inicio (para que pueda volver a iniciar el blackout)
+        if (startTrigger != null)
+            startTrigger.SetActive(true);
+
+        // 🔹 Volvemos al punto de respawn del Loop 4
+        if (loop4SpawnPoint != null)
+            loopManager.SetSpawnPoint(loop4SpawnPoint.position);
+
         loopManager.RespawnPlayer();
+
+        Debug.Log("[Loop4] Loop reseteado completamente");
     }
 
-    void SetBlockVisible(GameObject block, bool visible)
+    private void ResetEnvironment()
+    {
+        foreach (var l in lightsToControl)
+            if (l != null) l.enabled = true;
+
+        foreach (var b in hazardBlocks)
+            SetBlockVisible(b, false);
+
+        if (startTrigger != null)
+            startTrigger.SetActive(true);
+    }
+
+    private void SetBlockVisible(GameObject block, bool visible)
     {
         if (block == null) return;
 

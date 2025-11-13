@@ -11,12 +11,11 @@ public class HazardBlock : MonoBehaviour
         loop4Manager = FindObjectOfType<Loop4Manager>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // Detecta el choque físico con el jugador
-        if (collision.collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("[Loop4] Jugador chocó con un bloque peligroso!");
+            Debug.Log("[Loop4] Jugador tocó un bloque peligroso (Trigger)!");
             loop4Manager.ResetLoop4();
         }
     }
