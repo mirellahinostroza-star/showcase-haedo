@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -165,7 +165,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1510
-    height: 659
+    height: 694
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 370
-    height: 659
+    height: 694
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
@@ -214,7 +214,7 @@ MonoBehaviour:
     x: 370
     y: 0
     width: 1140
-    height: 659
+    height: 694
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
@@ -240,9 +240,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 659
+    y: 694
     width: 1510
-    height: 280
+    height: 245
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 16}
@@ -336,7 +336,7 @@ MonoBehaviour:
     x: 370
     y: 73
     width: 1138
-    height: 638
+    height: 673
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1138, y: 617}
+  m_TargetSize: {x: 1138, y: 652}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -372,8 +372,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -569
     m_HBaseRangeMax: 569
-    m_VBaseRangeMin: -308.5
-    m_VBaseRangeMax: 308.5
+    m_VBaseRangeMin: -326
+    m_VBaseRangeMax: 326
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -392,9 +392,9 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 1138
-      height: 617
+      height: 652
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 569, y: 308.5}
+    m_Translation: {x: 569, y: 326}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -402,12 +402,12 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -569
-      y: -308.5
+      y: -326
       width: 1138
-      height: 617
+      height: 652
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1138, y: 638}
+  m_LastWindowPixelSize: {x: 1138, y: 673}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -437,7 +437,7 @@ MonoBehaviour:
     x: 0
     y: 73
     width: 369
-    height: 638
+    height: 673
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -451,9 +451,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 34df0000
-      m_LastClickedID: 57140
-      m_ExpandedIDs: 5a58feffb05bfeff06df0000
+      m_SelectedIDs: 20db0000
+      m_LastClickedID: 56096
+      m_ExpandedIDs: 74e5f4ffbee5f4ffc0e5f4ffcee5f4ffd0e5f4ffdee5f4ffe0e5f4ffeee5f4fff0e5f4fffee5f4ff0ce6f4ff1ae6f4ff28e6f4ff42e6f4ff50e6f4ff5ee6f4ff84e6f4ff86e6f4ff94e6f4ffa2e6f4ffa4e6f4ffbee6f4ff76e7f4ff78e7f4ff7ae7f4ff88e7f4ff8ae7f4ffa4e7f4ffa6e7f4ffc0e7f4ffcee7f4ffe8e7f4fff6e7f4ff7ee8f4ff80e8f4ff9ae8f4ffd6e9f4ffe4e9f4ffa8f0f4ff228df5ff3c8df5ff4a8df5ff708df5ff7e8df5ffb08df5ffbe8df5ffcc8df5ffda8df5ff008ef5ff028ef5ff048ef5ff068ef5ff088ef5ff0a8ef5ff0c8ef5ff0e8ef5ff108ef5ffbc92f5ff829bf5ff909bf5ffb69bf5ffc49bf5ff0a9cf5ff0c9cf5ff4ea5f5ff5ca5f5ff82a5f5ff92a5f5ff94a5f5ffbea7f5ffd8a7f5ffe6a7f5ff40a9f5ff82aaf5ff1419f6ff3058feffd65bfeff98da0000b2da00004edb000032dd00004add00004edd000052dd0000a6dd0000aade0000fede00001edf000038df000050df000096df0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -501,7 +501,7 @@ MonoBehaviour:
     x: 370
     y: 73
     width: 1138
-    height: 638
+    height: 673
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -880,9 +880,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 48, y: 48}
+      snapOffset: {x: -207, y: -242}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
+      snapCorner: 3
       id: AINavigationOverlay
       index: 10
       layout: 4
@@ -899,9 +899,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 177.45091, y: 225.18971, z: 94.81543}
+    m_Target: {x: 196.69952, y: 219.97717, z: 73.339355}
     speed: 2
-    m_Value: {x: 177.45091, y: 225.18971, z: 94.81543}
+    m_Value: {x: 196.69952, y: 219.97717, z: 73.339355}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -947,13 +947,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.13259953, y: -0.2752467, z: 0.04253174, w: 0.95135474}
+    m_Target: {x: -0.1605764, y: 0.32630128, z: -0.056329146, w: -0.9298434}
     speed: 2
-    m_Value: {x: 0.13258441, y: -0.2752153, z: 0.04252689, w: 0.9512462}
+    m_Value: {x: -0.15909442, y: 0.32777375, z: -0.056077212, w: -0.92957443}
   m_Size:
-    m_Target: 26.907026
+    m_Target: 30.349777
     speed: 2
-    m_Value: 26.907026
+    m_Value: 30.349777
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1000,9 +1000,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 732
+    y: 767
     width: 1509
-    height: 259
+    height: 224
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1024,7 +1024,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/SCRIPTS/NUEVOS SCRIPTS/LOOP 5
+    - Assets/arte/modulos
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1032,16 +1032,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 72
   m_LastFolders:
-  - Assets/SCRIPTS/NUEVOS SCRIPTS/LOOP 5
+  - Assets/arte/modulos
   m_LastFoldersGridSize: 72
-  m_LastProjectPath: C:\Users\Noxi-PC\Desktop\FACULTAD\REALIDAD VIRTUAL\TP 1\showcase-haedo\terror-haedo
+  m_LastProjectPath: C:\Users\Abril\Desktop\Realidad Virtual\showcase-haedo\terror-haedo
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 1}
-    m_SelectedIDs: 9e090000
-    m_LastClickedID: 2462
-    m_ExpandedIDs: 000000000206000072060000e607000000ca9a3b
+    m_SelectedIDs: 8ae00000
+    m_LastClickedID: 57482
+    m_ExpandedIDs: 000000000206000086e0000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1121,7 +1121,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 97}
     m_GridSize: 72
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 292
