@@ -21,4 +21,4 @@ public class StopCeilingByLoop : MonoBehaviour
             ceilingTrap.ResetCeiling();
         }
     }
-}
+} 
