@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 310
     height: 603
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -271,8 +271,8 @@ MonoBehaviour:
     y: 0
     width: 346
     height: 939
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -402,10 +402,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ecdd0000
+      scrollPos: {x: 0, y: 1887}
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 10faf9ff6e04faff7605faff149bfaff3c9dfaffe251feff6254feffb8e20000b0e3000008e7000064390400
+      m_ExpandedIDs: d229fbff5a8dfbff4ee9fbff4c51feff4054feffd6de00007ce0000008e300001ae30000e6e3000012e4000044e7000002e800005ce80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -851,9 +851,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -296.9652, y: 125.47895, z: 373.3042}
+    m_Target: {x: 201.25232, y: 238.4898, z: 94.81239}
     speed: 2
-    m_Value: {x: -296.9652, y: 125.47895, z: 373.3042}
+    m_Value: {x: 201.25232, y: 238.4898, z: 94.81239}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -899,13 +899,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.08362932, y: -0.48540667, z: 0.046788625, w: 0.86902124}
+    m_Target: {x: 0.019404998, y: 0.40183973, z: 0.008111859, w: -0.91570187}
     speed: 2
-    m_Value: {x: 0.08369938, y: -0.4841025, z: 0.046663117, w: 0.8697482}
+    m_Value: {x: 0.019400852, y: 0.40175387, z: 0.008110126, w: -0.9155062}
   m_Size:
-    m_Target: 298.9711
+    m_Target: 0.20234855
     speed: 2
-    m_Value: 298.9711
+    m_Value: 0.20234855
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -923,7 +923,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.041989114, y: 0.005098308, z: -0.0001479609, w: 0.9991493}
+  m_LastSceneViewRotation: {x: -0.0059028175, y: -0.9553041, z: 0.01855902, w: -0.29523185}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -976,7 +976,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/assetsgenerales/soda-fountain-fast-food-cup
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -984,16 +984,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 72
   m_LastFolders:
-  - Assets
+  - Assets/assetsgenerales/soda-fountain-fast-food-cup
   m_LastFoldersGridSize: 72
-  m_LastProjectPath: C:\Users\Noxi-PC\Desktop\FACULTAD\REALIDAD VIRTUAL\TP 1\showcase-haedo\terror-haedo
+  m_LastProjectPath: C:\Users\Abril\Desktop\Realidad Virtual\showcase-haedo\terror-haedo
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 02060000
-    m_LastClickedID: 1538
-    m_ExpandedIDs: 0000000002060000e60800009a0f000000ca9a3b
+    scrollPos: {x: 0, y: 41}
+    m_SelectedIDs: 3cf50000
+    m_LastClickedID: 62780
+    m_ExpandedIDs: 0000000002060000be060000f8f4000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 160
+    m_CachedPref: 201
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1

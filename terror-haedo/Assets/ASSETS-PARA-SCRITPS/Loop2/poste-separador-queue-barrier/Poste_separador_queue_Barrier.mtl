@@ -1,0 +1,22 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Carpet_Berber_Pattern_Gray
+Ka 0.000000 0.000000 0.000000
+Kd 0.113725 0.270588 0.647059
+Ks 0.330000 0.330000 0.330000
+map_Kd Poste_separador_queue_Barrier/Carpet_Berber_Pattern_Gray.jpg
+
+newmtl Metal_Corrugated_Shiny
+Ka 0.000000 0.000000 0.000000
+Kd 0.756863 0.756863 0.756863
+Ks 0.330000 0.330000 0.330000
+map_Kd Poste_separador_queue_Barrier/Metal_Corrugated_Shiny.jpg
+
+newmtl Steel_Brushed_Stainless
+Ka 0.000000 0.000000 0.000000
+Kd 0.192157 0.196078 0.200000
+Ks 0.330000 0.330000 0.330000
+map_Kd Poste_separador_queue_Barrier/Steel_Brushed_Stainless.jpg
+
