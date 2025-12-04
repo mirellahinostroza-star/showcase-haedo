@@ -4,89 +4,89 @@ using UnityEngine;
 
 public class MemoryFlashMiniGame : MonoBehaviour
 {
-    [Header("Referencias")]
     public LoopManager loopManager;
-    public MemoryFlashBlocker blocker;
-    public MemoryFlashLight[] lights;
+    public List<MemoryFlashLight> lights;
+    public GameObject blocker;           // 👈 ahora es un ASSET visual, no solo collider
+    public float flashDuration = 0.4f;
 
-    [Header("Configuración")]
-    public float flashTime = 0.8f;
-    public float intervalTime = 0.4f;
-    public int sequenceLength = 4;
+    private List<int> pattern = new List<int>();
+    private int currentIndex = 0;
+    private bool gameRunning = false;
 
-    private List<MemoryFlashLight> sequence = new List<MemoryFlashLight>();
-    private List<MemoryFlashLight> playerInput = new List<MemoryFlashLight>();
-    private bool inputEnabled = false;
-    private bool inGame = false;
+    void Start()
+    {
+        // Asegurar que el blocker comience activo
+        if (blocker != null)
+            blocker.SetActive(true);
+    }
 
     public void StartMiniGame()
     {
-        if (!inGame)
-            StartCoroutine(RunMiniGame());
+        Debug.Log("[Loop2] Comenzando Memory Flash…");
+
+        pattern.Clear();
+        currentIndex = 0;
+        gameRunning = false;
+
+        // Crear patrón de 4 luces
+        for (int i = 0; i < 4; i++)
+            pattern.Add(Random.Range(0, lights.Count));
+
+        StartCoroutine(ShowPattern());
     }
 
-    IEnumerator RunMiniGame()
+    IEnumerator ShowPattern()
     {
-        inGame = true;
-        Debug.Log($"[{gameObject.name}] Iniciando secuencia...");
+        gameRunning = false;
 
-        sequence.Clear();
-        playerInput.Clear();
-
-        // Generar secuencia aleatoria
-        for (int i = 0; i < sequenceLength; i++)
+        foreach (int index in pattern)
         {
-            sequence.Add(lights[Random.Range(0, lights.Length)]);
+            lights[index].Flash(flashDuration);
+            yield return new WaitForSeconds(flashDuration + 0.2f);
         }
 
-        // Mostrar secuencia
-        foreach (var l in sequence)
-        {
-            l.Flash(flashTime);
-            yield return new WaitForSeconds(flashTime + intervalTime);
-        }
-
-        Debug.Log("[MemoryFlash] Esperando clics del jugador...");
-        inputEnabled = true;
+        gameRunning = true;
+        currentIndex = 0;
     }
 
+    // Llamado por cada luz cuando el jugador hace click
     public void RegisterPlayerClick(MemoryFlashLight clickedLight)
     {
-        if (!inputEnabled) return;
+        if (!gameRunning) return;
 
-        playerInput.Add(clickedLight);
-        int index = playerInput.Count - 1;
+        int index = lights.IndexOf(clickedLight);
 
-        // Verificar si la entrada es correcta
-        if (playerInput[index] != sequence[index])
+        // ✔ Correcto
+        if (index == pattern[currentIndex])
         {
-            Debug.Log("[MemoryFlash] Secuencia incorrecta. Reiniciando Loop actual...");
-            inputEnabled = false;
-            OnLose();
+            currentIndex++;
+
+            // ✔ COMPLETÓ EL PATRÓN
+            if (currentIndex >= pattern.Count)
+                WinMiniGame();
+
             return;
         }
 
-        // Si completó toda la secuencia
-        if (playerInput.Count == sequence.Count)
-        {
-            Debug.Log("[MemoryFlash] ¡Secuencia completada!");
-            inputEnabled = false;
-            OnWin();
-        }
+        // ❌ Incorrecto
+        LoseMiniGame();
     }
 
-    void OnWin()
+    void WinMiniGame()
     {
-        Debug.Log($"[{gameObject.name}] Ganaste el Memory Flash!");
+        gameRunning = false;
+        Debug.Log("[Loop2] ¡Ganaste el Memory Flash!");
+
+        // 🔥 DESAPARECE EL ASSET bloqueador
         if (blocker != null)
-            blocker.UnlockPath();
-        inGame = false;
+            blocker.SetActive(false);
     }
 
-    void OnLose()
+    void LoseMiniGame()
     {
-        Debug.Log("[MemoryFlash] Fallaste. Reiniciando el loop actual...");
-        loopManager.RespawnPlayer(); // vuelve al spawnPoint del loop activo
-        inGame = false;
+        gameRunning = false;
+
+        Debug.Log("[Loop2] Fallaste el Memory Flash → Reiniciando Loop 2");
+        loopManager.ResetToFirstLoop();
     }
 }

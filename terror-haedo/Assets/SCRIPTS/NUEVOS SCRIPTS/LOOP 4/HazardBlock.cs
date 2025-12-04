@@ -15,7 +15,7 @@ public class HazardBlock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("[Loop4] Jugador tocó un bloque peligroso (Trigger)!");
+            Debug.Log("[Loop4] Jugador tocó un espectro (Trigger)!");
             loop4Manager.ResetLoop4();
         }
     }
