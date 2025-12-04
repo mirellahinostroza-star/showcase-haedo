@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/showcase-haedo.unity
-    guid: e9cc7b4af0c59cd47af2c99442c16750
-  - enabled: 1
     path: Assets/Scenes/CANVAS/UI.unity
     guid: 5ebd96c95cd381041ba8de1a58d60a35
+  - enabled: 1
+    path: Assets/showcase-haedo.unity
+    guid: e9cc7b4af0c59cd47af2c99442c16750
   - enabled: 1
     path: Assets/Scenes/CANVAS/LORE.unity
     guid: 9dea7d437be8ea446823b313fc28a10b
@@ -25,5 +25,5 @@ EditorBuildSettings:
     guid: 1dc57166d5ff2eb4589ae24a33a76d1c
   - enabled: 1
     path: Assets/Scenes/CANVAS/FINAL.unity
-    guid: 998810bc02d3619418453e1c4e5c7c98
+    guid: f6e00abf6de024442b6e9bee317c6f73
   m_configObjects: {}
