@@ -8,9 +8,9 @@ public class CAMBIO_DE_ESCENA : MonoBehaviour
     void Start()
     {
         //  Solo para verificar si la escena existe en el Build Settings
-        if (SceneManager.GetSceneByName("NombreDeTuEscena").buildIndex == -1)
+        if (SceneManager.GetSceneByName("FINAL").buildIndex == -1)
         {
-            Debug.LogWarning("La escena 'NombreDeTuEscena' no está agregada al Build Settings.");
+            Debug.LogWarning("La escena 'NombreDeTuEscena' no estï¿½ agregada al Build Settings.");
         }
     }
 
