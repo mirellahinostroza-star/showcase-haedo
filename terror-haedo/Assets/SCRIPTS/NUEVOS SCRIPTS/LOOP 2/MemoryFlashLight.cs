@@ -5,15 +5,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(Light))]
 [RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(AudioSource))]  
 public class MemoryFlashLight : MonoBehaviour
 {
     public MemoryFlashMiniGame miniGame;
     public float flashIntensity = 6f;
-
-    [Header("Audio")]
-    public AudioClip flashSound; 
-    private AudioSource audioSource;
 
     private Light _light;
     private float baseIntensity;
@@ -21,18 +16,11 @@ public class MemoryFlashLight : MonoBehaviour
     void Start()
     {
         _light = GetComponent<Light>();
-        audioSource = GetComponent<AudioSource>();
-
-        audioSource.playOnAwake = false;   
         baseIntensity = _light.intensity;
     }
 
     public void Flash(float duration)
     {
-   
-        PlayFlashSound();
-
-   
         StartCoroutine(FlashRoutine(duration));
     }
 
@@ -48,19 +36,8 @@ public class MemoryFlashLight : MonoBehaviour
         if (miniGame != null)
         {
             Debug.Log($"[MemoryFlashLight] Click en {gameObject.name}");
-
-       
-            PlayFlashSound();
-
             miniGame.RegisterPlayerClick(this);
-            Flash(0.25f); 
+            Flash(0.25f);
         }
-    }
-
-   
-    private void PlayFlashSound()
-    {
-        if (flashSound != null && audioSource != null)
-            audioSource.PlayOneShot(flashSound);
     }
 }
